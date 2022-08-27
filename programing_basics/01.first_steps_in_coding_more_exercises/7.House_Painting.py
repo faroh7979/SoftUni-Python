@@ -1,0 +1,11 @@
+x=float(input())
+y=float(input())
+h=float(input())
+wallsarea=(((x*x)*2)-2.4)+(((x*y)*2)-((1.5*1.5)*2))
+roofarea=(2*(x*y))+(2*(0.5*(x*h)))
+wallsareac=wallsarea/3.4
+roofareac=roofarea/4.3
+green="{:.2f}".format(wallsareac)
+red="{:.2f}".format(roofareac)
+print(green)
+print(red)

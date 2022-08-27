@@ -1,0 +1,11 @@
+pricescum=float(input())
+pricecaca=float(input())
+weightpala=float(input())
+weightsafr=float(input())
+weightmidi=int(input())
+pricepala=pricescum*0.6+pricescum
+pricesafr=pricecaca*0.8+pricecaca
+pricemidi=7.50
+total=pricepala*weightpala+pricesafr*weightsafr+pricemidi*weightmidi
+totalf="{:.2f}".format(total)
+print(totalf)
