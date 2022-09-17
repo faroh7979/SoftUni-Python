@@ -1,19 +1,33 @@
-from collections import deque
+total_guests = int(input())
 
-kid_names = deque(input().split())
-n_toss = int(input())
+vip_guests = set()
+regular_guests = set()
 
-counter = 1
-while len(kid_names) > 1:
-    if counter == n_toss:
-        removed_child = kid_names.popleft()
-        counter = 1
-        print(f'Removed {removed_child}')
+for _ in range(total_guests):
+    guest_code = input()
+
+    if guest_code[0].isdigit():
+        vip_guests.add(guest_code)
+
     else:
-        moved_child = kid_names.popleft()
-        kid_names.append(moved_child)
-        counter += 1
+        regular_guests.add(guest_code)
 
-last_kid = kid_names.popleft()
+while True:
+    command = input()
 
-print(f'Last is {last_kid}')
+    if command == 'END':
+        break
+
+    if command[0].isdigit():
+        vip_guests.discard(command)
+
+    else:
+        regular_guests.discard(command)
+
+total_unattended_guests = len(vip_guests) + len(regular_guests)
+print(total_unattended_guests)
+
+if vip_guests:
+    print("\n".join(sorted(vip_guests)))
+if regular_guests:
+    print("\n".join(sorted(regular_guests)))

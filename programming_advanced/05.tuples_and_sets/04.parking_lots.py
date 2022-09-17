@@ -1,32 +1,18 @@
-from collections import deque
+total_park_operations = int(input())
+unique_numbers = set()
 
-water_quantity = int(input())
-command_line = input()
-people_on_queue = deque()
-start_drinking = False
+for _ in range(total_park_operations):
+    direction, car_number = input().split(', ')
 
-while command_line != 'End':
+    if direction == 'IN':
+        unique_numbers.add(car_number)
 
-    if command_line == 'Start':
-        start_drinking = True
-        command_line = input()
+    elif direction == 'OUT':
+        unique_numbers.remove(car_number)
 
-    if start_drinking:
-        if ' ' in command_line:
-            command = command_line.split()
-            refill_liters = int(command[1])
-            water_quantity += refill_liters
-        else:
-            if int(command_line) <= water_quantity:
-                water_quantity -= int(command_line)
-                drunk_person = people_on_queue.popleft()
-                print(f'{drunk_person} got water')
-            else:
-                drunk_person = people_on_queue.popleft()
-                print(f'{drunk_person} must wait')
-    else:
-        people_on_queue.append(command_line)
+if unique_numbers:
+    for number in unique_numbers:
+        print(number)
 
-    command_line = input()
-
-print(f'{water_quantity} liters left')
+else:
+    print('Parking Lot is Empty')
