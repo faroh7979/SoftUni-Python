@@ -1,19 +1,24 @@
-from collections import deque
+sequence_of_numbers = list(map(int, input().split()))
+target_number = int(input())
+second_list = sequence_of_numbers[1:]
+final_list = []
+winning_pairs = False
 
-kid_names = deque(input().split())
-n_toss = int(input())
+for current_index in range(len(sequence_of_numbers)):
+    first_num = sequence_of_numbers[current_index]
 
-counter = 1
-while len(kid_names) > 1:
-    if counter == n_toss:
-        removed_child = kid_names.popleft()
-        counter = 1
-        print(f'Removed {removed_child}')
-    else:
-        moved_child = kid_names.popleft()
-        kid_names.append(moved_child)
-        counter += 1
+    for second_index in range(len(second_list)):
+        second_num = second_list[second_index]
 
-last_kid = kid_names.popleft()
+        if first_num + second_num == target_number:
+            final_list.append(f'{first_num} + {second_num} = {target_number}')
+            sequence_of_numbers.remove(second_num)
+            second_list.remove(first_num)
+            second_list.remove(second_num)
+            break
 
-print(f'Last is {last_kid}')
+    sequence_of_numbers.remove(first_num)
+    if not sequence_of_numbers:
+        break
+
+print("\n".join(final_list))
