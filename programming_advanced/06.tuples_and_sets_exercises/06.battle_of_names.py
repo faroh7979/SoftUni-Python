@@ -1,24 +1,33 @@
-sequence_of_numbers = list(map(int, input().split()))
-target_number = int(input())
-second_list = sequence_of_numbers[1:]
-final_list = []
-winning_pairs = False
+total_names = int(input())
 
-for current_index in range(len(sequence_of_numbers)):
-    first_num = sequence_of_numbers[current_index]
+odds_results = set()
+even_results = set()
 
-    for second_index in range(len(second_list)):
-        second_num = second_list[second_index]
+for current_row in range(1, total_names + 1):  # Should use the current_iterations, starting from 1
+    current_name = input()
+    ascii_sum = 0
+    ascii_result = 0
 
-        if first_num + second_num == target_number:
-            final_list.append(f'{first_num} + {second_num} = {target_number}')
-            sequence_of_numbers.remove(second_num)
-            second_list.remove(first_num)
-            second_list.remove(second_num)
-            break
+    for symbol in current_name:
+        ascii_sum += ord(symbol)
+        ascii_result = int(ascii_sum / current_row)
 
-    sequence_of_numbers.remove(first_num)
-    if not sequence_of_numbers:
-        break
+    if ascii_result % 2 == 0:
+        even_results.add(ascii_result)
+    else:
+        odds_results.add(ascii_result)
 
-print("\n".join(final_list))
+even_results_sum = sum(even_results)
+odds_results_sum = sum(odds_results)
+
+if even_results_sum == odds_results_sum:
+    union_set = even_results.union(odds_results)
+    print(f'{", ".join(map(str, union_set))}')
+
+elif even_results_sum < odds_results_sum:
+    symmetric_set = odds_results.difference(even_results)
+    print(f'{", ".join(map(str, symmetric_set))}')
+
+elif even_results_sum > odds_results_sum:
+    symmetric_diff_set = even_results.symmetric_difference(odds_results)
+    print(f'{", ". join(map(str, symmetric_diff_set))}')

@@ -1,33 +1,26 @@
-total_guests = int(input())
+number_of_pairs = int(input())
+longest_pair = set()
 
-vip_guests = set()
-regular_guests = set()
+for _ in range(number_of_pairs):
+    first_pair, second_pair = input().split('-')
 
-for _ in range(total_guests):
-    guest_code = input()
+    first_pair_begin, first_pair_end = first_pair.split(',')
+    second_pair_begin, second_pair_end = second_pair.split(',')
 
-    if guest_code[0].isdigit():
-        vip_guests.add(guest_code)
+    first_pair_collection = set()
+    second_pair_collection = set()
 
-    else:
-        regular_guests.add(guest_code)
+    for value in range(int(first_pair_begin), int(first_pair_end) + 1):  # the value is inclusive
+        first_pair_collection.add(value)
 
-while True:
-    command = input()
+    for value in range(int(second_pair_begin), int(second_pair_end) + 1):  # the value is inclusive
+        second_pair_collection.add(value)
 
-    if command == 'END':
-        break
+    intersection_set = first_pair_collection.intersection(second_pair_collection)
 
-    if command[0].isdigit():
-        vip_guests.discard(command)
+    if len(intersection_set) > len(longest_pair):
+        longest_pair = intersection_set
 
-    else:
-        regular_guests.discard(command)
-
-total_unattended_guests = len(vip_guests) + len(regular_guests)
-print(total_unattended_guests)
-
-if vip_guests:
-    print("\n".join(sorted(vip_guests)))
-if regular_guests:
-    print("\n".join(sorted(regular_guests)))
+longest_pair_length = len(longest_pair)
+# should be printed with quad brackets, that is the reason for casting to list of {longest_pair}
+print(f'Longest intersection is {list(longest_pair)} with length {longest_pair_length}')

@@ -1,18 +1,11 @@
-total_park_operations = int(input())
-unique_numbers = set()
+input_phrase = input()
+unique_symbols = set()
 
-for _ in range(total_park_operations):
-    direction, car_number = input().split(', ')
+for symbol in input_phrase:
+    unique_symbols.add(symbol)
 
-    if direction == 'IN':
-        unique_numbers.add(car_number)
+ordered_list = [new_symbol for new_symbol in sorted(unique_symbols)]
 
-    elif direction == 'OUT':
-        unique_numbers.remove(car_number)
-
-if unique_numbers:
-    for number in unique_numbers:
-        print(number)
-
-else:
-    print('Parking Lot is Empty')
+for element in ordered_list:
+    matched_times = input_phrase.count(element)
+    print(f'{element}: {matched_times} time/s')
