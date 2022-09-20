@@ -4,8 +4,24 @@ material_level = deque(map(int, input().split()))
 magic_level = deque(map(int, input().split()))
 
 # present that searching for, need to be counted
-present_dictionary = {150: {'name': 'Doll', 'crafted_times': 0}, 250: {'name': 'Wooden train', 'crafted_times': 0},\
-                      300: {'name': 'Teddy bear', 'crafted_times': 0}, 400: {'name': 'Bicycle', 'crafted_times': 0}}
+present_dictionary = {
+    150: {
+        'name': 'Doll',
+        'crafted_times': 0
+    },
+    250: {
+        'name': 'Wooden train',
+        'crafted_times': 0
+    },
+    300: {
+        'name': 'Teddy bear',
+        'crafted_times': 0
+    },
+    400: {
+        'name': 'Bicycle',
+        'crafted_times': 0
+    }
+}
 presents_are_crafted = False
 
 crafted_presents = set()

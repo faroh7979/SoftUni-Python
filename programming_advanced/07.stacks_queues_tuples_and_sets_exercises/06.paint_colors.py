@@ -44,7 +44,7 @@ while colorful_string:
 
         else:  # if only manipulated substring left
             if last_substring:
-                colorful_string.append(first_substring)
+                colorful_string.append(last_substring)
             if first_substring:
                 colorful_string.append(first_substring)
 

@@ -23,7 +23,10 @@ while bee_values and nectar_values:
             total_honey_made += abs((current_bee * current_nectar))
 
         elif current_symbol == '/':
-            total_honey_made = total_honey_made + abs((current_bee / current_nectar))
+            if current_nectar == 0:  # because we can not division by zero
+                continue
+            else:
+                total_honey_made = total_honey_made + abs((current_bee / current_nectar))
 
     else:
         bee_values.appendleft(current_bee)  # should try again for another match
