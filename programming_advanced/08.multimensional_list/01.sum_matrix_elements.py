@@ -1,5 +1,5 @@
 matrix_dimensions = input()
-matrix_rows, matrix_columns = list(map(int, matrix_dimensions.split(', ')))
+matrix_rows, matrix_columns = tuple(map(int, matrix_dimensions.split(', ')))
 final_matrix = []
 final_result = 0
 
