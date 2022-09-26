@@ -32,21 +32,21 @@ for letter in directions:
             player_escaped = True
             player_position[1] += 1  # should print the very last position before escaping
 
-        for bunny_current in bunnies_positions:
-            if player_position == bunny_current:
-                bunny_catch_player = True
-                break
+        if not player_escaped:
+            for bunny_current in bunnies_positions:
+                if player_position == bunny_current:
+                    bunny_catch_player = True
 
     elif letter == 'R':
         player_position[1] += 1  # column index
-        if player_position[1] < 0:
+        if player_position[1] == columns:
             player_escaped = True
             player_position[1] -= 1  # should print the very last position before escaping
 
-        for bunny_current in bunnies_positions:
-            if player_position == bunny_current:
-                bunny_catch_player = True
-                break
+        if not player_escaped:
+            for bunny_current in bunnies_positions:
+                if player_position == bunny_current:
+                    bunny_catch_player = True
 
     elif letter == 'U':
         player_position[0] -= 1  # column index
@@ -54,21 +54,21 @@ for letter in directions:
             player_escaped = True
             player_position[0] += 1  # should print the very last position before escaping
 
-        for bunny_current in bunnies_positions:
-            if player_position == bunny_current:
-                bunny_catch_player = True
-                break
+        if not player_escaped:
+            for bunny_current in bunnies_positions:
+                if player_position == bunny_current:
+                    bunny_catch_player = True
 
     elif letter == 'D':
         player_position[0] += 1  # column index
-        if player_position[0] < 0:
+        if player_position[0] == columns:
             player_escaped = True
             player_position[0] -= 1  # should print the very last position before escaping
 
-        for bunny_current in bunnies_positions:
-            if player_position == bunny_current:
-                bunny_catch_player = True
-                break
+        if not player_escaped:
+            for bunny_current in bunnies_positions:
+                if player_position == bunny_current:
+                    bunny_catch_player = True
 
     # bunny spreading
     for bunny in bunnies_positions:
@@ -94,10 +94,11 @@ for letter in directions:
     bunnies_positions.extend(bunny_temp_list)
     bunny_temp_list = []  # using for concatenating at the end
 
-    for bunny_current in bunnies_positions:
-        if player_position == bunny_current:
-            bunny_catch_player = True
-            break
+    if not player_escaped:
+        for bunny_current in bunnies_positions:
+            if player_position == bunny_current:
+                bunny_catch_player = True
+                break
 
     # checking for dying or escaping
     if bunny_catch_player or player_escaped:
@@ -117,7 +118,5 @@ for final_row in matrix:
 if player_escaped:
     print(f"won: {player_position[0]} {player_position[1]}")
 
-if bunny_catch_player:
+elif bunny_catch_player:
     print(f"dead: {player_position[0]} {player_position[1]}")
-else:
-    print('test')
