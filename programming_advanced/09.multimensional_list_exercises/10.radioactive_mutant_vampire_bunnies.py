@@ -15,6 +15,11 @@ for row in range(rows):
             if column[cur_index] == 'B':
                 bunnies_positions.append([row, cur_index])
 
+# should remove player from final matrix
+player_starting_row, player_starting_column = player_position[0], player_position[1]
+matrix[player_starting_row][player_starting_column] = '.'
+
+bunny_temp_list = []
 player_escaped = False
 bunny_catch_player = False
 directions = input()
@@ -27,8 +32,10 @@ for letter in directions:
             player_escaped = True
             player_position[1] += 1  # should print the very last position before escaping
 
-        if player_position in bunnies_positions:
-            bunny_catch_player = True
+        for bunny_current in bunnies_positions:
+            if player_position == bunny_current:
+                bunny_catch_player = True
+                break
 
     elif letter == 'R':
         player_position[1] += 1  # column index
@@ -36,8 +43,10 @@ for letter in directions:
             player_escaped = True
             player_position[1] -= 1  # should print the very last position before escaping
 
-        if player_position in bunnies_positions:
-            bunny_catch_player = True
+        for bunny_current in bunnies_positions:
+            if player_position == bunny_current:
+                bunny_catch_player = True
+                break
 
     elif letter == 'U':
         player_position[0] -= 1  # column index
@@ -45,8 +54,10 @@ for letter in directions:
             player_escaped = True
             player_position[0] += 1  # should print the very last position before escaping
 
-        if player_position in bunnies_positions:
-            bunny_catch_player = True
+        for bunny_current in bunnies_positions:
+            if player_position == bunny_current:
+                bunny_catch_player = True
+                break
 
     elif letter == 'D':
         player_position[0] += 1  # column index
@@ -54,8 +65,10 @@ for letter in directions:
             player_escaped = True
             player_position[0] -= 1  # should print the very last position before escaping
 
-        if player_position in bunnies_positions:
-            bunny_catch_player = True
+        for bunny_current in bunnies_positions:
+            if player_position == bunny_current:
+                bunny_catch_player = True
+                break
 
     # bunny spreading
     for bunny in bunnies_positions:
@@ -64,25 +77,47 @@ for letter in directions:
 
         if bunny_rows > 0:
             new_bunny_rows = bunny_rows - 1
-            bunnies_positions.append([new_bunny_rows, bunny_columns])
+            bunny_temp_list.append([new_bunny_rows, bunny_columns])
 
-        if bunny_rows < rows - 2:
+        if bunny_rows < rows - 1:
             new_bunny_rows = bunny_rows + 1
-            bunnies_positions.append([new_bunny_rows, bunny_columns])
+            bunny_temp_list.append([new_bunny_rows, bunny_columns])
 
         if bunny_columns > 0:
             new_bunny_columns = bunny_columns - 1
-            bunnies_positions.append([bunny_rows, new_bunny_columns])
+            bunny_temp_list.append([bunny_rows, new_bunny_columns])
 
-        if bunny_columns < columns - 2:
+        if bunny_columns < columns - 1:
             new_bunny_columns = bunny_columns + 1
-            bunnies_positions.append([bunny_rows, new_bunny_columns])
+            bunny_temp_list.append([bunny_rows, new_bunny_columns])
+
+    bunnies_positions.extend(bunny_temp_list)
+    bunny_temp_list = []  # using for concatenating at the end
+
+    for bunny_current in bunnies_positions:
+        if player_position == bunny_current:
+            bunny_catch_player = True
+            break
 
     # checking for dying or escaping
     if bunny_catch_player or player_escaped:
         break
 
+for element in bunnies_positions:
+    bunny_row = element[0]
+    bunny_column = element[1]
+
+    matrix[bunny_row][bunny_column] = 'B'
+
+for final_row in matrix:
+    for final_column in final_row:
+        print(final_column, end='')
+    print()
+
 if player_escaped:
     print(f"won: {player_position[0]} {player_position[1]}")
+
 if bunny_catch_player:
     print(f"dead: {player_position[0]} {player_position[1]}")
+else:
+    print('test')
