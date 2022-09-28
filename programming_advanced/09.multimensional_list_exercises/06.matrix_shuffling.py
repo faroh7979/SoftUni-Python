@@ -25,6 +25,9 @@ while True:
             else:
                 print('Invalid input!')
 
+        else:
+            print('Invalid input!')
+
     elif command[0] == 'END':
         break
 
