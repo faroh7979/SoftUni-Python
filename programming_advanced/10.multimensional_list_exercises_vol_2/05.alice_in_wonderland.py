@@ -86,7 +86,7 @@ while True:
     elif command == 'right':
         alice_col += 1
 
-        if alice_row >= matrix_size:
+        if alice_col >= matrix_size:
             alice_is_lost = True
             break
 
