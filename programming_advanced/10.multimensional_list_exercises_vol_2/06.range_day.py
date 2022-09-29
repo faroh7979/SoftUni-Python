@@ -64,7 +64,7 @@ for _ in range(total_commands):
         if direction == 'right':
             if player_col + steps < matrix_size:
                 if matrix[player_row][player_col + steps] == '.':
-                    player_row += steps
+                    player_col += steps
 
         elif direction == 'left':
             if player_col - steps >= 0:
