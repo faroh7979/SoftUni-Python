@@ -10,6 +10,7 @@ class InvalidDomainError(Exception):
     """When the domain of the email is invalid (valid domains are: .com, .bg, .net, .org"""
 
 
+valid_domains = ['.com', '.bg', '.org', '.net']
 entered_email = input()
 while entered_email != 'End':
 
@@ -31,7 +32,7 @@ while entered_email != 'End':
     entered_email_length = len(entered_email)
 
     if last_dot_reverse_position == - 1:  # this will be returned if no dot in the email == invalid domain
-        raise InvalidDomainError('Domain must be one of the following: .com, .bg, .org, .net')
+        raise InvalidDomainError(f'Domain must be one of the following: {", ".join(valid_domains)}')
 
     else:
         last_dot_index = entered_email_length - 1 - last_dot_reverse_position
