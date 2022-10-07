@@ -38,7 +38,7 @@ while entered_email != 'End':
         last_dot_index = entered_email_length - 1 - last_dot_reverse_position
         domain = entered_email[last_dot_index::]
 
-        if domain == '.com' or domain == '.bg' or domain == '.org' or domain == '.net':  # valid domain
+        if domain in valid_domains:  # valid domain
             print('Email is valid')
         else:
             raise InvalidDomainError('Domain must be one of the following: .com, .bg, .org, .net')

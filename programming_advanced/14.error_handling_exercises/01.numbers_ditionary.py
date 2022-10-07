@@ -4,6 +4,7 @@ line = input()
 while line != "Search":
     number_as_string = line
 
+    # in case of input which it is not an integer
     try:
         number = int(input())
         numbers_dictionary[number_as_string] = number
@@ -15,6 +16,8 @@ while line != "Search":
 line = input()
 while line != "Remove":
     searched = line
+
+    # in case of invalid dictionary key
     try:
         print(numbers_dictionary[searched])
     except KeyError:
@@ -25,6 +28,8 @@ while line != "Remove":
 line = input()
 while line != "End":
     searched = line
+
+    # in case of invalid dictionary key
     try:
         del numbers_dictionary[searched]
     except KeyError:
