@@ -60,5 +60,26 @@ while directions_list:
     rover_position = row, col
     current_position_symbol = matrix[row][col]
 
-    
+    if current_position_symbol == 'W':
+        if 'water' in deposit_to_be_found:
+            deposit_to_be_found.remove('water')
+        print(f'Water deposit found at ({row}, {col})')
 
+    elif current_position_symbol == 'M':
+        if 'metal' in deposit_to_be_found:
+            deposit_to_be_found.remove('metal')
+        print(f'Metal deposit found at ({row}, {col})')
+
+    elif current_position_symbol == 'C':
+        if 'concrete' in deposit_to_be_found:
+            deposit_to_be_found.remove('concrete')
+        print(f'Concrete deposit found at ({row}, {col})')
+
+    elif current_position_symbol == 'R':
+        print(f'Rover got broken at ({row}, {col})')
+        break
+
+if not deposit_to_be_found:
+    print('Area suitable to start the colony.')
+else:
+    print('Area not suitable to start the colony.')
