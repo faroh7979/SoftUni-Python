@@ -7,14 +7,16 @@ total_used_energy = 0
 
 current_craft_times = 0
 while elves and energy:
-    current_craft_times += 1
+
     current_elf = elves.popleft()
     current_energy = energy.pop()
 
     if current_elf < 5:  # Careful if this case is counting for the crafted
+        energy.append(current_energy)
         continue
+    current_craft_times += 1
 
-    elif current_craft_times % 15 == 0:
+    if current_craft_times % 15 == 0:
         current_energy *= 2
         if current_energy <= current_elf:
             current_elf -= current_energy
