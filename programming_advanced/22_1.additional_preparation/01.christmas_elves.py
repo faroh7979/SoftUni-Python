@@ -23,8 +23,9 @@ while elves and energy:
 
         else:
             current_elf *= 2
+            current_energy = int(current_energy / 2)
+            energy.append(current_energy)
         elves.append(current_elf)
-        energy.append(current_energy)
 
     elif current_craft_times % 3 == 0:
         current_energy *= 2
@@ -36,8 +37,9 @@ while elves and energy:
 
         else:
             current_elf *= 2
+            current_energy = int(current_energy / 2)
+            energy.append(current_energy)
         elves.append(current_elf)
-        energy.append(current_energy)
 
     elif current_craft_times % 5 == 0:
         if current_energy <= current_elf:
@@ -45,8 +47,9 @@ while elves and energy:
             total_used_energy += current_energy
         else:
             current_elf *= 2
+            current_energy = int(current_energy / 2)
+            energy.append(current_energy)
         elves.append(current_elf)
-        energy.append(current_energy)
 
     else:
         if current_energy <= current_elf:
@@ -56,8 +59,9 @@ while elves and energy:
             current_elf += 1
         else:
             current_elf *= 2
+            energy.append(current_energy)
         elves.append(current_elf)
-        energy.append(current_energy)
+
 
 print(f'Toys: {total_toys}')
 print(f'Energy: {total_used_energy}')
