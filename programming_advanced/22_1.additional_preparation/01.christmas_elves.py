@@ -21,7 +21,6 @@ while elves and energy:
         if current_energy <= current_elf:
             current_elf -= current_energy
             total_used_energy += current_energy
-            current_elf += 1
 
         else:
             current_elf *= 2
@@ -49,7 +48,6 @@ while elves and energy:
             total_used_energy += current_energy
         else:
             current_elf *= 2
-            current_energy = int(current_energy / 2)
             energy.append(current_energy)
         elves.append(current_elf)
 
