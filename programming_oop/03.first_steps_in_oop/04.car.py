@@ -6,4 +6,3 @@ class Car:
 
     def get_info(self):
         return f'This is {self.name} {self.model} with engine {self.engine}'
-    
