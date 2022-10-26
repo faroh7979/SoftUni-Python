@@ -6,11 +6,11 @@ class Trainer:
         self.name = name
         self.pokemons = pokemons
 
-    def add_pokemon(self, pokemon: Pokemon):
+    def add_pokemon(self, pokemon_new: Pokemon):
 
-        if pokemon not in self.pokemons:
-            self.pokemons.append(pokemon)
-            return f"Caught {pokemon.name} with health {pokemon.health}"
+        if pokemon_new not in self.pokemons:
+            self.pokemons.append(pokemon_new)
+            return f"Caught {pokemon_new.name} with health {pokemon_new.health}"
 
         else:
             return f"This pokemon is already caught"
@@ -34,3 +34,14 @@ class Trainer:
 
         return f'{"".join(list_for_returning)}'
 
+
+pokemon = Pokemon("Pikachu", 90)
+print(pokemon.pokemon_details())
+trainer = Trainer("Ash")
+print(trainer.add_pokemon(pokemon))
+second_pokemon = Pokemon("Charizard", 110)
+print(trainer.add_pokemon(second_pokemon))
+print(trainer.add_pokemon(second_pokemon))
+print(trainer.release_pokemon("Pikachu"))
+print(trainer.release_pokemon("Pikachu"))
+print(trainer.trainer_data())
