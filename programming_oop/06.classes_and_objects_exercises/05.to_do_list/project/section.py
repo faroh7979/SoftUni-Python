@@ -11,14 +11,17 @@ class Section:
             return f"Task is already in the section {self.name}"
 
         self.tasks.append(new_task)
-        return f"Task {Task.details(new_task)} is added to the section"
+        return f"Task {new_task.details()} is added to the section"
 
     def complete_task(self, task_name: str):
-        current_index = self.tasks.index(task_name)
-        if current_index == - 1:
+
+        try:
+            task_new = next(filter(lambda t: t.name == task_name, self.tasks))
+
+        except StopIteration:
             return f"Could not find task with the name {task_name}"
 
-        self.tasks[current_index].completed = True
+        task_new.completed = True
         return f"Completed task {task_name}"
 
     def clean_section(self):
@@ -35,23 +38,10 @@ class Section:
         return f"Cleared {removed_tasks} tasks."
 
     def view_section(self):
-        list_for_returning = [f'Section {self.name}:\n']
+        list_for_returning = [f'Section {self.name}:']
 
-        for new_element in self.tasks:
-            list_for_returning.append(f'{new_element.details()}\n')
+        [list_for_returning.append(t.details()) for t in self.tasks]
 
-        return f'{"".join(list_for_returning)}'
+        return '\n'.join(list_for_returning)
 
 
-task = Task("Make bed", "27/05/2020")
-print(task.change_name("Go to University"))
-print(task.change_due_date("28.05.2020"))
-task.add_comment("Don't forget laptop")
-print(task.edit_comment(0, "Don't forget laptop and notebook"))
-print(task.details())
-section = Section("Daily tasks")
-print(section.add_task(task))
-second_task = Task("Make bed", "27/05/2020")
-section.add_task(second_task)
-print(section.clean_section())
-print(section.view_section())
