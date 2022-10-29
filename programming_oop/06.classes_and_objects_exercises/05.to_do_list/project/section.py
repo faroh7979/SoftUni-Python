@@ -35,7 +35,7 @@ class Section:
         return f"Cleared {removed_tasks} tasks."
 
     def view_section(self):
-        list_for_returning = [f'Section: {self.name}\n']
+        list_for_returning = [f'Section {self.name}:\n']
 
         for new_element in self.tasks:
             list_for_returning.append(f'{new_element.details()}\n')
