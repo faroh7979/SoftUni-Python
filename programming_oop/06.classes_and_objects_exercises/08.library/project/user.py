@@ -1,0 +1,12 @@
+class User:
+    def __init__(self, user_id: int, user_name: str):
+        self.user_id = user_id
+        self.username = user_name
+        self.books = []
+
+    def info(self):
+        return ', '.join([b for b in sorted(self.books)])
+
+    def __str__(self):
+        return f"{self.user_id}, {self.username}, {self.books}"
+
