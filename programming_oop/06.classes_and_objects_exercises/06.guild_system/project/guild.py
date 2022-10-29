@@ -1,8 +1,7 @@
-from player import Player
+from project.player import Player
 
 
 class Guild:
-    all_players = []
 
     def __init__(self, name: str):
         self.name = name
@@ -13,14 +12,12 @@ class Guild:
         if player_ass in self.players:
             return f"Player {player_ass.name} is already in the guild."
 
-        elif player_ass in Guild.all_players:
+        if player_ass.guild != 'Unaffiliated':
             return f"Player {player_ass.name} is in another guild."
 
-        else:
-            Guild.all_players.append(player_ass)
-            self.players.append(player_ass)
-            player_ass.guild = self.name
-            return f"Welcome player {player_ass.name} to the guild {self.name}"
+        self.players.append(player_ass)
+        player_ass.guild = self.name
+        return f"Welcome player {player_ass.name} to the guild {self.name}"
 
     def kick_player(self, player_name: str):
 
@@ -28,7 +25,7 @@ class Guild:
             if checked_player.name == player_name:
                 self.players.remove(checked_player)
                 checked_player.guild = "Unaffiliated"
-                break
+                return f'Player {player_name} has been removed from the guild.'
 
         else:
             return f"Player {player_name} is not in the guild."
