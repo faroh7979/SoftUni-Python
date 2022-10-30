@@ -30,6 +30,10 @@ class Registration:
         if searched_user.username == new_username:
             return "Please check again the provided username - it should be different than the username used so far!"
 
+        if searched_user.username in library.rented_books:
+            library.rented_books[new_username] = library.rented_books[searched_user.username]
+            library.rented_books.pop([searched_user.username])
+
         searched_user.username = new_username
         return f"Username successfully changed to: {new_username} for user id: {user_id}"
 
