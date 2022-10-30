@@ -11,10 +11,13 @@ class Library:
 
         if book_name in self.books_available[author]:
             self.books_available[author].remove(book_name)
-
-            self.rented_books[user.username] = {book_name: days_to_return}
-
             user.books.append(book_name)
+
+            if user.username in self.rented_books:
+                self.rented_books[user.username][book_name] = days_to_return
+
+            else:
+                self.rented_books[user.username] = {book_name: days_to_return}
 
             return f"{book_name} successfully rented for the next {days_to_return} days!"
 
