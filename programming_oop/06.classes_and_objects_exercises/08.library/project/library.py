@@ -1,4 +1,4 @@
-from user import User
+from project.user import User
 
 
 class Library:
@@ -14,6 +14,8 @@ class Library:
 
             self.rented_books[user.username] = {book_name: days_to_return}
 
+            user.books.append(book_name)
+
             return f"{book_name} successfully rented for the next {days_to_return} days!"
 
         return f'The book "{book_name}" is already rented and will be available in {self.rented_books[user.username][book_name]} days!'
@@ -21,8 +23,9 @@ class Library:
     def return_book(self, author: str, book_name: str, user: User):
 
         if book_name in self.rented_books[user.username]:
-            self.rented_books.pop(user.username)
+            self.rented_books[user.username].pop(book_name)
             self.books_available[author].append(book_name)
+            user.books.remove(book_name)
 
         else:
             return f"{user.username} doesn't have this book in his/her records!"
