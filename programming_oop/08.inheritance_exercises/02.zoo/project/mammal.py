@@ -1,7 +1,6 @@
-from mammal import Mammal
+from animal import Animal
 
 
-class Gorilla(Mammal):
+class Mammal(Animal):
     def __init__(self, name: str):
         super(Mammal, self).__init__(name)
-
