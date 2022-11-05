@@ -1,26 +1,12 @@
-output = '''Go to University
-28.05.2020
-Don't forget laptop and notebook
-Name: Go to University - Due Date: 28.05.2020
-Task Name: Go to University - Due Date: 28.05.2020 is added to the section
-Cleared 0 tasks.
-Section Daily tasks:
-Name: Go to University - Due Date: 28.05.2020
-Name: Make bed - Due Date: 27/05/2020'''
+solution = False
+for x in range(-100, 100):
 
+    if solution:
+        break
 
-expcted_output = '''Go to University
-28.05.2020
-Don't forget laptop and notebook
-Name: Go to University - Due Date: 28.05.2020
-Task Name: Go to University - Due Date: 28.05.2020 is added to the section
-Cleared 0 tasks.
-Section Daily tasks:
-Name: Go to University - Due Date: 28.05.2020
-Name: Make bed - Due Date: 27/05/2020'''
-
-# for current_index in range(len(expcted_output)):
-#     if output[current_index] != expcted_output[current_index]:
-#         print(current_index)
-
-print(expcted_output == output)
+    for y in range(-100, 100):
+        if 2 * x - 3 * y == 8:
+            if 3 * x - 4 * y == 14:
+                solution = True
+                print(f'Triangle = {x}\nSquare = {y}')
+                break
