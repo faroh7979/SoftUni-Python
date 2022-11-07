@@ -1,5 +1,5 @@
-from project.dough import Dough
-from project.topping import Topping
+from dough import Dough
+from topping import Topping
 
 
 class Pizza:
