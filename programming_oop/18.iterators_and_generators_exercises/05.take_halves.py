@@ -1,12 +1,9 @@
-from sys import maxsize
-
-
 def solution():
 
     def integers():
         current_num = 1
 
-        while current_num < maxsize:
+        while True:
             yield current_num
             current_num += 1
 
@@ -16,12 +13,9 @@ def solution():
             yield i / 2
 
     def take(n, seq):
-        current_count = 1
-        while current_count < n:
-            yield halves()
-            current_count += 1
+        return [next(seq) for _ in range(n)]
 
-    return (take, halves, integers)
+    return take, halves, integers
 
 
 take = solution()[0]
