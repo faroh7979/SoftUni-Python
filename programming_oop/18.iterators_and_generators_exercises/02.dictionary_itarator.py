@@ -7,6 +7,7 @@ class dictionary_iter:
         self.list = deque([(k, v) for k, v in self.my_dict.items()])
 
     def __iter__(self):
+        self.list = deque([(k, v) for k, v in self.my_dict.items()])
         return self
 
     def __next__(self):
@@ -18,5 +19,11 @@ class dictionary_iter:
 
 
 result = dictionary_iter({1: "1", 2: "2"})
+for x in result:
+    print(x)
+
+for x in result:
+    print(x)
+    
 for x in result:
     print(x)
