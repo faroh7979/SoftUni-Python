@@ -1,4 +1,4 @@
-# SoftUni-Python
+# SoftUni-Python!
 This repository contains all of my solved problems 2022.
 
 Example of this kind of solving code:
